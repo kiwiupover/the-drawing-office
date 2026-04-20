@@ -54,7 +54,9 @@
 		role="dialog"
 		aria-modal="true"
 		aria-label="Image viewer"
+		tabindex="-1"
 		onclick={close}
+		onkeydown={onKey}
 	>
 		<button class="lb-btn lb-close" type="button" onclick={close} aria-label="Close">&times;</button>
 		<button
@@ -66,12 +68,14 @@
 			}}
 			aria-label="Previous image">&larr;</button
 		>
-		<img
-			class="lb-img"
-			src={activeSrc}
-			alt=""
+		<div
+			class="lb-stage"
+			role="presentation"
 			onclick={(e) => e.stopPropagation()}
-		/>
+			onkeydown={(e) => e.stopPropagation()}
+		>
+			<img class="lb-img" src={activeSrc} alt="" />
+		</div>
 		<button
 			class="lb-btn lb-next"
 			type="button"
@@ -131,6 +135,10 @@
 		place-items: center;
 		z-index: 100;
 		padding: clamp(1rem, 4vw, 3rem);
+	}
+
+	.lb-stage {
+		display: contents;
 	}
 
 	.lb-img {
