@@ -12,7 +12,10 @@ export const BUSINESS = {
 	postalCode: '',
 	addressCountry: 'NZ',
 	telephone: '+64 9 970 9515',
-	email: 'info@thedrawingoffice.com'
+	email: 'info@thedrawingoffice.com',
+	geo: { latitude: -36.7185, longitude: 174.7481 },
+	areaServed: ['Auckland', 'Northland', 'Waikato', 'Bay of Plenty', 'New Zealand'],
+	sameAs: []
 };
 
 export const DEFAULT_OG_IMAGE = '/og-default.jpg';

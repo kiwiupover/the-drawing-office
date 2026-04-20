@@ -1,16 +1,23 @@
 <script>
 	import '../app.css';
-	import favicon from '$lib/assets/favicon.svg';
 	import { SITE_URL, BUSINESS, DEFAULT_OG_IMAGE, absUrl } from '$lib/site.js';
 
 	let { children } = $props();
 
-	const jsonLd = {
+	const businessLd = {
 		'@context': 'https://schema.org',
 		'@type': 'ArchitecturalService',
+		'@id': `${SITE_URL}/#business`,
 		name: BUSINESS.name,
+		alternateName: 'The Drawing Office',
 		url: SITE_URL,
-		image: absUrl(DEFAULT_OG_IMAGE),
+		logo: absUrl('/favicon.svg'),
+		image: {
+			'@type': 'ImageObject',
+			url: absUrl(DEFAULT_OG_IMAGE),
+			width: 1200,
+			height: 630
+		},
 		telephone: BUSINESS.telephone,
 		email: BUSINESS.email,
 		address: {
@@ -20,12 +27,34 @@
 			addressRegion: BUSINESS.addressRegion,
 			addressCountry: BUSINESS.addressCountry
 		},
-		areaServed: 'Auckland'
+		geo: {
+			'@type': 'GeoCoordinates',
+			latitude: BUSINESS.geo.latitude,
+			longitude: BUSINESS.geo.longitude
+		},
+		hasMap: `https://www.google.com/maps?q=${encodeURIComponent(
+			`${BUSINESS.streetAddress}, ${BUSINESS.addressLocality}, ${BUSINESS.addressRegion}, ${BUSINESS.addressCountry}`
+		)}`,
+		areaServed: BUSINESS.areaServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
+		knowsAbout: ['Residential architecture', 'New-build homes', 'Architectural design', 'House design'],
+		sameAs: BUSINESS.sameAs
 	};
+
+	const websiteLd = {
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		'@id': `${SITE_URL}/#website`,
+		url: SITE_URL,
+		name: 'The Drawing Office',
+		publisher: { '@id': `${SITE_URL}/#business` },
+		inLanguage: 'en-NZ'
+	};
+
+	const jsonLd = [businessLd, websiteLd];
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 	<link
@@ -88,11 +117,13 @@
 		font-size: 1.375rem;
 		font-weight: 500;
 		letter-spacing: -0.01em;
+		white-space: nowrap;
 	}
 
 	.site-nav {
 		display: flex;
 		gap: clamp(1rem, 3vw, 2.25rem);
+		flex-shrink: 0;
 	}
 
 	.nav-link {
@@ -149,10 +180,18 @@
 
 	@media (max-width: 520px) {
 		.header-inner {
-			min-height: 64px;
+			min-height: 60px;
+			gap: 0.75rem;
 		}
 		.site-title {
-			font-size: 1.125rem;
+			font-size: 0.95rem;
+		}
+		.site-nav {
+			gap: 0.875rem;
+		}
+		.nav-link {
+			font-size: 0.6875rem;
+			letter-spacing: 0.08em;
 		}
 	}
 </style>
