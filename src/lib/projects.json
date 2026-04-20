@@ -2,7 +2,7 @@
   {
     "slug": "potier",
     "title": "POTIER",
-    "description": null,
+    "description": "The Potier house was drawn around careful conversations with the clients and a close response to its particular site.",
     "images": [
       "/images/potier/01.jpg",
       "/images/potier/02.jpg",
@@ -29,7 +29,7 @@
   {
     "slug": "dorn",
     "title": "DORN",
-    "description": null,
+    "description": "The Dorn residence takes a simple, confident idea and works it through at every scale, from the siting of the building down to the detail of joinery and openings.",
     "images": [
       "/images/dorn/01.jpg",
       "/images/dorn/02.jpg",
@@ -42,7 +42,7 @@
   {
     "slug": "evans",
     "title": "Evans",
-    "description": null,
+    "description": "The Evans house places family life at its centre, with the everyday rooms at the core of the plan and quieter spaces drawn out to the edges.",
     "images": [
       "/images/evans/01.jpg",
       "/images/evans/02.jpg",
@@ -71,7 +71,7 @@
   {
     "slug": "murray",
     "title": "Murray",
-    "description": null,
+    "description": "The Murray home is a bespoke New Zealand residence, shaped by its site, its brief, and a long back-and-forth with the clients about how the house should be lived in.",
     "images": [
       "/images/murray/01.jpg",
       "/images/murray/02.jpg",
@@ -89,7 +89,7 @@
   {
     "slug": "williams",
     "title": "Williams",
-    "description": null,
+    "description": "The Williams house settles into its site, with the plan shaped by the contours and the path of the sun through the day.",
     "images": [
       "/images/williams/01.jpg",
       "/images/williams/02.jpg",
@@ -105,7 +105,7 @@
   {
     "slug": "beechwood",
     "title": "BEECHWOOD",
-    "description": null,
+    "description": "The Beechwood residence was developed in detail, refined through each stage from first concepts through to the choices made on site.",
     "images": [
       "/images/beechwood/01.jpg",
       "/images/beechwood/02.jpg",
@@ -130,7 +130,7 @@
   {
     "slug": "schwane",
     "title": "Mt Wellington",
-    "description": null,
+    "description": "The Mt Wellington house opens to the garden where it matters, with sheltered edges for New Zealand's less forgiving days.",
     "images": [
       "/images/schwane/01.jpg",
       "/images/schwane/02.jpg",
@@ -145,7 +145,7 @@
   {
     "slug": "nacht",
     "title": "McCaffery",
-    "description": null,
+    "description": "The McCaffery residence was drawn around light, volume, and the way each room is used from morning through evening.",
     "images": [
       "/images/nacht/01.jpg",
       "/images/nacht/02.jpg",
@@ -158,7 +158,7 @@
   {
     "slug": "elington",
     "title": "Elington",
-    "description": null,
+    "description": "The Elington house balances openness to the view with privacy from the street, shaped by the lines of the site.",
     "images": [
       "/images/elington/01.jpg",
       "/images/elington/02.jpg",
@@ -173,7 +173,7 @@
   {
     "slug": "gebaude",
     "title": "RUBY",
-    "description": null,
+    "description": "The Ruby home was designed around the small moments of everyday life — the kitchen, the threshold, the morning light in the main living space.",
     "images": [
       "/images/gebaude/01.jpg",
       "/images/gebaude/02.jpg",
@@ -187,7 +187,7 @@
   {
     "slug": "weg",
     "title": "VYLE",
-    "description": null,
+    "description": "The Vyle house is oriented to the sun and the outlook, with the main living spaces placed to make the most of both.",
     "images": [
       "/images/weg/01.jpg",
       "/images/weg/02.jpg",
@@ -202,7 +202,7 @@
   {
     "slug": "maritime",
     "title": "VICELICH",
-    "description": null,
+    "description": "The Vicelich residence was designed with its New Zealand setting in mind, detailed to weather well and age in place.",
     "images": [
       "/images/maritime/01.jpg",
       "/images/maritime/02.jpg",
@@ -216,7 +216,7 @@
   {
     "slug": "vergnugungspark",
     "title": "LOCKING",
-    "description": null,
+    "description": "The Locking home is a considered, carefully-scaled house drawn around a clear idea and a well-tested brief.",
     "images": [
       "/images/vergnugungspark/01.jpg",
       "/images/vergnugungspark/02.jpg",

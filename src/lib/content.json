@@ -1,5 +1,9 @@
 {
-	"home": { "intro": "" },
-	"about": "",
-	"contact": { "intro": "We would love to hear about your project. Drop us a line." }
+  "home": {
+    "intro": "The Drawing Office designs new homes across New Zealand. Every project starts with your site, your brief, and the way you want to live — and carries that through to a house that feels made for you."
+  },
+  "about": "The Drawing Office is an architecture practice designing new homes across New Zealand. Based in Browns Bay on Auckland's North Shore, we work with clients from first conversations through concept, consent, and construction.\n\nWe start every project by listening — to your site, to your brief, and to the way you actually want to live. Good architecture is specific: to its setting, its climate, the people who'll live in it, and the way it will be built. The drawings we produce are our way of working all of that out with you before the first piece of timber is cut.\n\nWe stay closely involved from early sketches through detailed drawings and site visits, so the house you end up with is the house you wanted — refined along the way by what you learn together.\n\nIf you're thinking about building, we'd love to hear from you.",
+  "contact": {
+    "intro": "Planning a new home? Tell us a little about your site and what you have in mind — we'll be in touch to talk it through."
+  }
 }

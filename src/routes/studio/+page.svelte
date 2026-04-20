@@ -4,7 +4,7 @@
 	let { data, form } = $props();
 	let submitting = $state(false);
 
-	const DRAFT_KEY = 'drawing-office-studio-draft-v1';
+	const DRAFT_KEY = 'drawing-office-studio-draft-v2';
 
 	let projectDrafts = $state(
 		Object.fromEntries((data.projects ?? []).map((p) => [p.slug, p.description]))
@@ -13,12 +13,25 @@
 	let aboutText = $state(data.content?.about ?? '');
 	let contactIntro = $state(data.content?.contact?.intro ?? '');
 
+	function serverBaseline() {
+		return JSON.stringify({
+			projects: Object.fromEntries(
+				(data.projects ?? []).map((p) => [p.slug, p.description])
+			),
+			content: data.content ?? null
+		});
+	}
+
 	$effect(() => {
 		if (!data.authenticated) return;
 		try {
 			const raw = localStorage.getItem(DRAFT_KEY);
 			if (!raw) return;
 			const draft = JSON.parse(raw);
+			if (draft.baseline !== serverBaseline()) {
+				localStorage.removeItem(DRAFT_KEY);
+				return;
+			}
 			if (draft.projects && typeof draft.projects === 'object') {
 				projectDrafts = { ...projectDrafts, ...draft.projects };
 			}
@@ -33,6 +46,7 @@
 	$effect(() => {
 		if (!data.authenticated) return;
 		const payload = {
+			baseline: serverBaseline(),
 			projects: projectDrafts,
 			homeIntro,
 			about: aboutText,
@@ -151,22 +165,57 @@
 
 				<label class="field">
 					<span class="label">Homepage intro</span>
-					<textarea name="home.intro" rows="4" bind:value={homeIntro}></textarea>
+					<span class="hint"
+						>1–3 sentences shown on the homepage under the Steve Jobs quote. Speak to someone
+						planning a new home.</span
+					>
+					<textarea
+						name="home.intro"
+						rows="4"
+						placeholder="The Drawing Office designs new homes across Auckland — thoughtful architecture shaped by your site, your brief, and the way you want to live."
+						bind:value={homeIntro}
+					></textarea>
 				</label>
 
 				<label class="field">
 					<span class="label">About</span>
-					<textarea name="about" rows="8" bind:value={aboutText}></textarea>
+					<span class="hint"
+						>Full text of the /about page. Separate paragraphs with a blank line. Help people
+						thinking about building understand how you work.</span
+					>
+					<textarea
+						name="about"
+						rows="8"
+						placeholder={`The Drawing Office is an Auckland architecture practice designing new homes for people building once, and building well.
+
+We start every project by listening — to your site, your brief, and the way you actually want to live. From concept through consent to construction, we stay involved, keeping the drawings in step with what's happening on site.
+
+Based in Browns Bay, we work with clients across Auckland and the wider region.`}
+						bind:value={aboutText}
+					></textarea>
 				</label>
 
 				<label class="field">
 					<span class="label">Contact intro</span>
-					<textarea name="contact.intro" rows="3" bind:value={contactIntro}></textarea>
+					<span class="hint"
+						>One line at the top of the /contact page. Invite prospective clients to reach out.</span
+					>
+					<textarea
+						name="contact.intro"
+						rows="3"
+						placeholder="Planning a new home? Tell us about your site and what you have in mind — we'll be in touch to talk it through."
+						bind:value={contactIntro}
+					></textarea>
 				</label>
 			</fieldset>
 
 			<fieldset class="group">
 				<legend>Projects</legend>
+				<p class="hint group-hint">
+					1–2 sentences per project. Name the type of home, the site or suburb, the materials,
+					and the key idea of the brief. Shown on each project page and used by search engines
+					to help people in New Zealand find your work.
+				</p>
 
 				{#each data.projects ?? [] as project (project.slug)}
 					<label class="field">
@@ -174,6 +223,7 @@
 						<textarea
 							name="project:{project.slug}"
 							rows="4"
+							placeholder="e.g. A four-bedroom family home on a north-facing coastal section in Hobsonville. Designed around a central courtyard for shelter and sun, clad in cedar and dark-stained ply."
 							bind:value={projectDrafts[project.slug]}
 						></textarea>
 					</label>
