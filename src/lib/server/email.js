@@ -4,7 +4,8 @@ import { env } from '$env/dynamic/private';
 const TO = 'info@thedrawingoffice.com';
 const DEFAULT_FROM = 'The Drawing Office <contact@thedrawingoffice.com>';
 
-let resend;
+/** @type {Resend | null} */
+let resend = null;
 
 function getClient() {
 	const key = env.RESEND_API_KEY;
