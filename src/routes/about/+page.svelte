@@ -14,6 +14,7 @@
 	title="About — The Drawing Office"
 	description="About The Drawing Office — architectural design studio in Browns Bay, Auckland."
 	canonicalPath="/about"
+	ogImage="/og/williams.jpg"
 />
 
 <section class="about container">

@@ -11,6 +11,7 @@
 	title="Contact — The Drawing Office"
 	description="Get in touch with The Drawing Office — architectural design studio in Browns Bay, Auckland. Phone 09 970 9515 or email info@thedrawingoffice.com."
 	canonicalPath="/contact"
+	ogImage="/og/murray.jpg"
 />
 
 <section class="contact container">

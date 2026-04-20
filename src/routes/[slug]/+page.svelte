@@ -12,7 +12,7 @@
 	let seoDescription = $derived(
 		project.description ?? `Architectural project by The Drawing Office — ${project.title}.`
 	);
-	let seoImage = $derived(project.images?.[0] ?? '/og-default.jpg');
+	let seoImage = $derived(`/og/${project.slug}.jpg`);
 	let canonicalPath = $derived(`/${project.slug}`);
 
 	let breadcrumbLd = $derived({
