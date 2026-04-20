@@ -1,19 +1,22 @@
 <script>
 	import { enhance } from '$app/forms';
+	import SEO from '$lib/components/SEO.svelte';
+	import content from '$lib/content.json';
 
 	let { form } = $props();
 	let submitting = $state(false);
 </script>
 
-<svelte:head>
-	<title>Contact — The Drawing Office</title>
-	<meta name="description" content="Get in touch with The Drawing Office in Browns Bay, Auckland." />
-</svelte:head>
+<SEO
+	title="Contact — The Drawing Office"
+	description="Get in touch with The Drawing Office — architectural design studio in Browns Bay, Auckland. Phone 09 970 9515 or email info@thedrawingoffice.com."
+	canonicalPath="/contact"
+/>
 
 <section class="contact container">
 	<header class="intro">
 		<h1>Contact</h1>
-		<p class="lede">We would love to hear about your project. Drop us a line.</p>
+		<p class="lede">{content.contact.intro}</p>
 	</header>
 
 	<div class="grid">

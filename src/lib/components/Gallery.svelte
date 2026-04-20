@@ -43,7 +43,14 @@
 			onclick={() => open(i)}
 			aria-label={`Open image ${i + 1}`}
 		>
-			<img {src} alt={alt ? `${alt} — ${i + 1}` : `Image ${i + 1}`} loading="lazy" decoding="async" />
+			<img
+				{src}
+				alt={alt
+					? `${alt} — The Drawing Office architectural project, photo ${i + 1} of ${images.length}`
+					: `The Drawing Office architectural project, photo ${i + 1} of ${images.length}`}
+				loading="lazy"
+				decoding="async"
+			/>
 		</button>
 	{/each}
 </div>
@@ -74,7 +81,13 @@
 			onclick={(e) => e.stopPropagation()}
 			onkeydown={(e) => e.stopPropagation()}
 		>
-			<img class="lb-img" src={activeSrc} alt="" />
+			<img
+				class="lb-img"
+				src={activeSrc}
+				alt={alt
+					? `${alt} — The Drawing Office architectural project, photo ${activeIndex + 1} of ${images.length}`
+					: `The Drawing Office architectural project, photo ${activeIndex + 1} of ${images.length}`}
+			/>
 		</div>
 		<button
 			class="lb-btn lb-next"

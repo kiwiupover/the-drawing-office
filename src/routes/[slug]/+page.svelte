@@ -1,17 +1,50 @@
 <script>
 	import Gallery from '$lib/components/Gallery.svelte';
+	import SEO from '$lib/components/SEO.svelte';
+	import { absUrl } from '$lib/site.js';
 
 	let { data } = $props();
 	let project = $derived(data.project);
 	let prev = $derived(data.prev);
 	let next = $derived(data.next);
+
+	let seoTitle = $derived(`${project.title} — The Drawing Office`);
+	let seoDescription = $derived(
+		project.description ?? `Architectural project by The Drawing Office — ${project.title}.`
+	);
+	let seoImage = $derived(project.images?.[0] ?? '/og-default.jpg');
+	let canonicalPath = $derived(`/${project.slug}`);
+
+	let breadcrumbLd = $derived({
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{
+				'@type': 'ListItem',
+				position: 1,
+				name: 'Home',
+				item: absUrl('/')
+			},
+			{
+				'@type': 'ListItem',
+				position: 2,
+				name: project.title,
+				item: absUrl(`/${project.slug}`)
+			}
+		]
+	});
 </script>
 
+<SEO
+	title={seoTitle}
+	description={seoDescription}
+	canonicalPath={canonicalPath}
+	ogImage={seoImage}
+	ogType="article"
+/>
+
 <svelte:head>
-	<title>{project.title} — The Drawing Office</title>
-	{#if project.description}
-		<meta name="description" content={project.description} />
-	{/if}
+	{@html `<script type="application/ld+json">${JSON.stringify(breadcrumbLd)}<\/script>`}
 </svelte:head>
 
 <article class="project">

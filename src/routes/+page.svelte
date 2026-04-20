@@ -1,15 +1,17 @@
 <script>
 	import ProjectCard from '$lib/components/ProjectCard.svelte';
+	import SEO from '$lib/components/SEO.svelte';
 	import projects from '$lib/projects.json';
+	import content from '$lib/content.json';
 </script>
 
-<svelte:head>
-	<title>The Drawing Office</title>
-	<meta
-		name="description"
-		content="The Drawing Office — architectural design studio based in Browns Bay, Auckland."
-	/>
-</svelte:head>
+<SEO
+	title="The Drawing Office — Architectural Design Studio, Auckland NZ"
+	description="Architectural design studio in Browns Bay, Auckland. A selected portfolio of residential and commercial projects by The Drawing Office."
+	canonicalPath="/"
+/>
+
+<h1 class="visually-hidden">The Drawing Office — Architectural Design, Auckland</h1>
 
 <section class="hero">
 	<div class="container hero-inner">
@@ -19,6 +21,9 @@
 			</p>
 			<footer class="attribution">&mdash; Steve Jobs</footer>
 		</blockquote>
+		{#if content.home.intro}
+			<p class="studio-intro">{content.home.intro}</p>
+		{/if}
 	</div>
 </section>
 
@@ -71,6 +76,15 @@
 		letter-spacing: var(--track-caps);
 		font-size: 0.75rem;
 		color: var(--muted);
+	}
+
+	.studio-intro {
+		max-width: 640px;
+		margin: var(--space-5) auto 0;
+		text-align: center;
+		color: var(--muted);
+		font-size: var(--step-1);
+		line-height: 1.6;
 	}
 
 	.projects {

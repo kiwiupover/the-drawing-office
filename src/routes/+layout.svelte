@@ -1,8 +1,27 @@
 <script>
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
+	import { SITE_URL, BUSINESS, DEFAULT_OG_IMAGE, absUrl } from '$lib/site.js';
 
 	let { children } = $props();
+
+	const jsonLd = {
+		'@context': 'https://schema.org',
+		'@type': 'ArchitecturalService',
+		name: BUSINESS.name,
+		url: SITE_URL,
+		image: absUrl(DEFAULT_OG_IMAGE),
+		telephone: BUSINESS.telephone,
+		email: BUSINESS.email,
+		address: {
+			'@type': 'PostalAddress',
+			streetAddress: BUSINESS.streetAddress,
+			addressLocality: BUSINESS.addressLocality,
+			addressRegion: BUSINESS.addressRegion,
+			addressCountry: BUSINESS.addressCountry
+		},
+		areaServed: 'Auckland'
+	};
 </script>
 
 <svelte:head>
@@ -13,6 +32,7 @@
 		rel="stylesheet"
 		href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
 	/>
+	{@html `<script type="application/ld+json">${JSON.stringify(jsonLd)}<\/script>`}
 </svelte:head>
 
 <div class="page">
@@ -21,6 +41,7 @@
 			<a class="site-title" href="/">The Drawing Office</a>
 			<nav class="site-nav" aria-label="Primary">
 				<a href="/" class="nav-link">Projects</a>
+				<a href="/about" class="nav-link">About</a>
 				<a href="/contact" class="nav-link">Contact</a>
 			</nav>
 		</div>

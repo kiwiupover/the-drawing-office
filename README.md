@@ -36,3 +36,14 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+
+## Environment variables
+
+The private `/studio` content editor reads the following variables. A template is in `.env.example`.
+
+- `ADMIN_PASSWORD` — shared password for the `/studio` login form.
+- `ADMIN_SESSION_SECRET` — long random string used to sign the admin session cookie (HMAC-SHA-256).
+- `GITHUB_TOKEN` — fine-grained PAT with contents read/write on this repo only.
+- `GITHUB_OWNER` — GitHub account or org that owns the repo.
+- `GITHUB_REPO` — repo name.
+- `GITHUB_BRANCH` — deploy branch the editor commits to (usually `main`).
