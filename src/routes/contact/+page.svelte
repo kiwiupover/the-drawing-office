@@ -7,7 +7,7 @@
 
 <svelte:head>
 	<title>Contact — The Drawing Office</title>
-	<meta name="description" content="Get in touch with The Drawing Office in Hobsonville, Auckland." />
+	<meta name="description" content="Get in touch with The Drawing Office in Browns Bay, Auckland." />
 </svelte:head>
 
 <section class="contact container">
@@ -20,7 +20,7 @@
 		<div class="info">
 			<address>
 				<p class="studio-name">The Drawing Office Ltd</p>
-				<p class="address-line">1/111 Hobsonville Rd,<br />Hobsonville, Auckland</p>
+				<p class="address-line">21 Sandiache Way,<br />Browns Bay, Auckland,<br />New Zealand</p>
 				<p class="line">
 					<span class="label">Phone</span>
 					<a href="tel:+6499709515">09 970 9515</a>
@@ -34,7 +34,7 @@
 			<div class="map">
 				<iframe
 					title="Map to The Drawing Office"
-					src="https://www.google.com/maps?q=1/111+Hobsonville+Rd,+Hobsonville,+Auckland&output=embed"
+					src="https://www.google.com/maps?q=21+Sandiache+Way,+Browns+Bay,+Auckland,+New+Zealand&output=embed"
 					loading="lazy"
 					referrerpolicy="no-referrer-when-downgrade"
 				></iframe>

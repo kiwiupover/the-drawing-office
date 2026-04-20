@@ -7,7 +7,7 @@
 	<title>The Drawing Office</title>
 	<meta
 		name="description"
-		content="The Drawing Office — architectural design studio based in Hobsonville, Auckland."
+		content="The Drawing Office — architectural design studio based in Browns Bay, Auckland."
 	/>
 </svelte:head>
 
@@ -58,8 +58,8 @@
 		font-family: var(--font-serif);
 		font-style: italic;
 		font-weight: 400;
-		font-size: var(--step-6);
-		line-height: 1.15;
+		font-size: clamp(1.75rem, 4vw, 3.25rem);
+		line-height: 1.2;
 		letter-spacing: -0.01em;
 		margin: 0;
 		color: var(--fg);

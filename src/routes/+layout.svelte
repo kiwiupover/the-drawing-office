@@ -32,7 +32,7 @@
 
 	<footer class="site-footer">
 		<div class="container footer-inner">
-			<p class="footer-address">1/111 Hobsonville Rd, Hobsonville, Auckland</p>
+			<p class="footer-address">21 Sandiache Way, Browns Bay, Auckland, New Zealand</p>
 			<p class="footer-copy">&copy; 2026 The Drawing Office Ltd</p>
 		</div>
 	</footer>
