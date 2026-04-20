@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://thedrawingoffice.com';
+export const SITE_URL = 'https://the-drawing-office.vercel.app';
 export const SITE_NAME = 'The Drawing Office';
 export const SITE_TAGLINE = 'Architectural Design Studio, Auckland NZ';
 export const SITE_DESCRIPTION =
