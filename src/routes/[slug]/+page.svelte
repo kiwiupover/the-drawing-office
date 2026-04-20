@@ -2,6 +2,7 @@
 	import Gallery from '$lib/components/Gallery.svelte';
 	import SEO from '$lib/components/SEO.svelte';
 	import { absUrl } from '$lib/site.js';
+	import { reveal } from '$lib/actions/reveal.js';
 
 	let { data } = $props();
 	let project = $derived(data.project);
@@ -48,7 +49,7 @@
 </svelte:head>
 
 <article class="project">
-	<header class="project-head container">
+	<header class="project-head container reveal" use:reveal>
 		<h1>{project.title}</h1>
 		{#if project.description}
 			<p class="desc">{project.description}</p>
@@ -59,7 +60,7 @@
 		<Gallery images={project.images} alt={project.title} />
 	</div>
 
-	<nav class="pager container" aria-label="Project navigation">
+	<nav class="pager container reveal" use:reveal aria-label="Project navigation">
 		<a class="pager-link prev" href="/{prev.slug}">
 			<span class="pager-direction">&larr; Previous</span>
 			<span class="pager-title">{prev.title}</span>
@@ -77,14 +78,14 @@
 	}
 
 	.project-head {
-		text-align: center;
+		text-align: left;
 		padding-block: var(--space-6) var(--space-4);
-		max-width: 760px;
 	}
 
 	.project-head h1 {
 		font-size: var(--step-5);
 		letter-spacing: -0.02em;
+		max-width: 65ch;
 	}
 
 	.desc {
@@ -92,6 +93,7 @@
 		color: var(--muted);
 		font-size: var(--step-1);
 		line-height: 1.6;
+		max-width: 65ch;
 	}
 
 	.pager {

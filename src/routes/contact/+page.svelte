@@ -2,6 +2,7 @@
 	import { enhance } from '$app/forms';
 	import SEO from '$lib/components/SEO.svelte';
 	import content from '$lib/content.json';
+	import { reveal } from '$lib/actions/reveal.js';
 
 	let { form } = $props();
 	let submitting = $state(false);
@@ -15,16 +16,16 @@
 />
 
 <section class="contact container">
-	<header class="intro">
+	<header class="intro reveal" use:reveal>
 		<h1>Contact</h1>
 		<p class="lede">{content.contact.intro}</p>
 	</header>
 
 	<div class="grid">
-		<div class="info">
+		<div class="info reveal" use:reveal={{ delay: 80 }}>
 			<address>
 				<p class="studio-name">The Drawing Office Ltd</p>
-				<p class="address-line">21 Sandiache Way,<br />Browns Bay, Auckland,<br />New Zealand</p>
+				<p class="address-line">23 Sandiacre Way,<br />Browns Bay, Auckland,<br />New Zealand</p>
 				<p class="line">
 					<span class="label">Phone</span>
 					<a href="tel:+6499709515">09 970 9515</a>
@@ -38,7 +39,7 @@
 			<div class="map">
 				<iframe
 					title="Map to The Drawing Office"
-					src="https://www.google.com/maps?q=21+Sandiache+Way,+Browns+Bay,+Auckland,+New+Zealand&output=embed"
+					src="https://www.google.com/maps?q=23+Sandiacre+Way,+Browns+Bay,+Auckland,+New+Zealand&output=embed"
 					loading="lazy"
 					referrerpolicy="no-referrer-when-downgrade"
 				></iframe>
@@ -46,9 +47,10 @@
 		</div>
 
 		<form
-			class="form"
+			class="form reveal"
 			method="POST"
 			action="?/send"
+			use:reveal={{ delay: 160 }}
 			use:enhance={() => {
 				submitting = true;
 				return async ({ update }) => {
@@ -106,9 +108,9 @@
 	}
 
 	.intro {
-		text-align: center;
-		max-width: 640px;
-		margin: 0 auto var(--space-5);
+		text-align: left;
+		max-width: 65ch;
+		margin: 0 0 var(--space-5);
 	}
 
 	.intro h1 {

@@ -3,6 +3,7 @@
 	import SEO from '$lib/components/SEO.svelte';
 	import projects from '$lib/projects.json';
 	import content from '$lib/content.json';
+	import { reveal } from '$lib/actions/reveal.js';
 </script>
 
 <SEO
@@ -15,21 +16,20 @@
 
 <section class="hero">
 	<div class="container hero-inner">
-		<blockquote class="quote">
+		<blockquote class="quote reveal" use:reveal>
 			<p>
-				&ldquo;Design is not just what it looks like and feels like. Design is how it works.&rdquo;
+				&ldquo;Design is not just what it looks like and feels like. Design is how it works.&rdquo;<span class="attribution">&mdash; Steve Jobs</span>
 			</p>
-			<footer class="attribution">&mdash; Steve Jobs</footer>
 		</blockquote>
 		{#if content.home.intro}
-			<p class="studio-intro">{content.home.intro}</p>
+			<p class="studio-intro reveal" use:reveal={{ delay: 140 }}>{content.home.intro}</p>
 		{/if}
 	</div>
 </section>
 
 <section class="projects">
 	<div class="container">
-		<header class="section-head">
+		<header class="section-head reveal" use:reveal>
 			<span class="caps">Selected Projects</span>
 		</header>
 
@@ -37,8 +37,10 @@
 			<p class="muted">No projects yet.</p>
 		{:else}
 			<div class="grid">
-				{#each projects as project (project.slug)}
-					<ProjectCard {project} />
+				{#each projects as project, i (project.slug)}
+					<div class="reveal" use:reveal={{ delay: (i % 3) * 70 }}>
+						<ProjectCard {project} />
+					</div>
 				{/each}
 			</div>
 		{/if}
@@ -51,37 +53,38 @@
 	}
 
 	.hero-inner {
-		max-width: 960px;
+		max-width: 65ch;
 	}
 
 	.quote {
 		margin: 0;
-		text-align: center;
+		text-align: left;
 	}
 
 	.quote p {
 		font-family: var(--font-serif);
-		font-style: italic;
-		font-weight: 400;
-		font-size: clamp(1.75rem, 4vw, 3.25rem);
-		line-height: 1.2;
-		letter-spacing: -0.01em;
+		font-weight: 500;
+		font-size: clamp(1.0625rem, 2.2vw, 1.625rem);
+		line-height: 1.35;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
 		margin: 0;
 		color: var(--fg);
 	}
 
 	.attribution {
-		margin-top: var(--space-4);
+		margin-left: 0.5rem;
 		text-transform: uppercase;
 		letter-spacing: var(--track-caps);
-		font-size: 0.75rem;
+		font-size: 0.7rem;
 		color: var(--muted);
+		white-space: nowrap;
 	}
 
 	.studio-intro {
-		max-width: 640px;
-		margin: var(--space-5) auto 0;
-		text-align: center;
+		max-width: 65ch;
+		margin: var(--space-5) 0 0;
+		text-align: left;
 		color: var(--muted);
 		font-size: var(--step-1);
 		line-height: 1.6;

@@ -4,8 +4,8 @@
 	--muted: #666666;
 	--line: #e5e5e5;
 
-	--font-serif: 'Playfair Display', 'Times New Roman', Times, serif;
-	--font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+	--font-serif: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+	--font-sans: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
 
 	--step-0: 1rem;
 	--step-1: 1.125rem;
@@ -153,4 +153,25 @@ textarea:focus {
 	clip: rect(0, 0, 0, 0);
 	white-space: nowrap;
 	border: 0;
+}
+
+.js-motion .reveal {
+	opacity: 0;
+	transform: translateY(22px);
+	transition: opacity 640ms var(--ease), transform 720ms var(--ease);
+	will-change: opacity, transform;
+}
+
+.js-motion .reveal.is-visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.js-motion .reveal,
+	.js-motion .reveal.is-visible {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
 }

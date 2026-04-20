@@ -1,4 +1,6 @@
 <script>
+	import { reveal } from '$lib/actions/reveal.js';
+
 	/** @type {{ images: string[], alt?: string }} */
 	let { images, alt = '' } = $props();
 
@@ -38,10 +40,11 @@
 	{#each images as src, i (src + i)}
 		<button
 			type="button"
-			class="tile"
+			class="tile reveal"
 			class:wide={i % 5 === 0}
 			onclick={() => open(i)}
 			aria-label={`Open image ${i + 1}`}
+			use:reveal
 		>
 			<img
 				{src}

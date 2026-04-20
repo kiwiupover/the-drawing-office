@@ -6,7 +6,7 @@ export const SITE_DESCRIPTION =
 
 export const BUSINESS = {
 	name: 'The Drawing Office Ltd',
-	streetAddress: '21 Sandiache Way',
+	streetAddress: '23 Sandiacre Way',
 	addressLocality: 'Browns Bay',
 	addressRegion: 'Auckland',
 	postalCode: '',

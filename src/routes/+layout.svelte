@@ -30,7 +30,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 	<link
 		rel="stylesheet"
-		href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+		href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap"
 	/>
 	{@html `<script type="application/ld+json">${JSON.stringify(jsonLd)}<\/script>`}
 </svelte:head>
@@ -53,7 +53,7 @@
 
 	<footer class="site-footer">
 		<div class="container footer-inner">
-			<p class="footer-address">21 Sandiache Way, Browns Bay, Auckland, New Zealand</p>
+			<p class="footer-address">23 Sandiacre Way, Browns Bay, Auckland, New Zealand</p>
 			<p class="footer-copy">&copy; 2026 The Drawing Office Ltd</p>
 		</div>
 	</footer>
