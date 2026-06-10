@@ -53,7 +53,7 @@
 	}
 
 	.hero-inner {
-		max-width: 65ch;
+		max-width: 80ch;
 	}
 
 	.quote {
