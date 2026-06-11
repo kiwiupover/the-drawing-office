@@ -22,7 +22,6 @@
 		email: BUSINESS.email,
 		address: {
 			'@type': 'PostalAddress',
-			streetAddress: BUSINESS.streetAddress,
 			addressLocality: BUSINESS.addressLocality,
 			addressRegion: BUSINESS.addressRegion,
 			addressCountry: BUSINESS.addressCountry
@@ -33,7 +32,7 @@
 			longitude: BUSINESS.geo.longitude
 		},
 		hasMap: `https://www.google.com/maps?q=${encodeURIComponent(
-			`${BUSINESS.streetAddress}, ${BUSINESS.addressLocality}, ${BUSINESS.addressRegion}, ${BUSINESS.addressCountry}`
+			`${BUSINESS.addressLocality}, ${BUSINESS.addressRegion}, ${BUSINESS.addressCountry}`
 		)}`,
 		areaServed: BUSINESS.areaServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
 		knowsAbout: ['Residential architecture', 'New-build homes', 'Architectural design', 'House design'],
@@ -82,7 +81,7 @@
 
 	<footer class="site-footer">
 		<div class="container footer-inner">
-			<p class="footer-address">23 Sandiacre Way, Browns Bay, Auckland, New Zealand</p>
+			<p class="footer-address">Browns Bay, Auckland, New Zealand</p>
 			<p class="footer-copy">&copy; 2026 The Drawing Office Ltd</p>
 		</div>
 	</footer>

@@ -25,7 +25,7 @@
 		<div class="info reveal" use:reveal={{ delay: 80 }}>
 			<address>
 				<p class="studio-name">The Drawing Office Ltd</p>
-				<p class="address-line">23 Sandiacre Way,<br />Browns Bay, Auckland,<br />New Zealand</p>
+				<p class="address-line">Browns Bay, Auckland,<br />New Zealand</p>
 				<p class="line">
 					<span class="label">Phone</span>
 					<a href="tel:+6499709515">09 970 9515</a>
@@ -39,7 +39,7 @@
 			<div class="map">
 				<iframe
 					title="Map to The Drawing Office"
-					src="https://www.google.com/maps?q=23+Sandiacre+Way,+Browns+Bay,+Auckland,+New+Zealand&output=embed"
+					src="https://www.google.com/maps?ll=-36.8485,174.7633&z=10&output=embed"
 					loading="lazy"
 					referrerpolicy="no-referrer-when-downgrade"
 				></iframe>

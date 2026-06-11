@@ -6,14 +6,13 @@ export const SITE_DESCRIPTION =
 
 export const BUSINESS = {
 	name: 'The Drawing Office Ltd',
-	streetAddress: '23 Sandiacre Way',
 	addressLocality: 'Browns Bay',
 	addressRegion: 'Auckland',
 	postalCode: '',
 	addressCountry: 'NZ',
 	telephone: '+64 9 970 9515',
 	email: 'info@thedrawingoffice.com',
-	geo: { latitude: -36.7185, longitude: 174.7481 },
+	geo: { latitude: -36.7186, longitude: 174.7488 },
 	areaServed: ['Auckland', 'Northland', 'Waikato', 'Bay of Plenty', 'New Zealand'],
 	sameAs: []
 };
