@@ -1,8 +1,19 @@
 <script>
 	import '../app.css';
+	import { afterNavigate } from '$app/navigation';
+	import { PUBLIC_GA_ID } from '$env/static/public';
 	import { SITE_URL, BUSINESS, DEFAULT_OG_IMAGE, absUrl } from '$lib/site.js';
 
 	let { children } = $props();
+
+	afterNavigate(({ to }) => {
+		if (!PUBLIC_GA_ID || !to || typeof window === 'undefined' || !window.gtag) return;
+		window.gtag('event', 'page_view', {
+			page_path: to.url.pathname + to.url.search,
+			page_location: to.url.href,
+			page_title: document.title
+		});
+	});
 
 	const businessLd = {
 		'@context': 'https://schema.org',
@@ -61,6 +72,10 @@
 		href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap"
 	/>
 	{@html `<script type="application/ld+json">${JSON.stringify(jsonLd)}<\/script>`}
+	{#if PUBLIC_GA_ID}
+		<script async src="https://www.googletagmanager.com/gtag/js?id={PUBLIC_GA_ID}"></script>
+		{@html `<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${PUBLIC_GA_ID}',{send_page_view:false});<\/script>`}
+	{/if}
 </svelte:head>
 
 <div class="page">
