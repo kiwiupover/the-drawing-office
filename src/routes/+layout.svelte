@@ -93,7 +93,10 @@
 			<a class="site-title" href="/">The Drawing Office</a>
 			<nav class="site-nav" aria-label="Primary">
 				<a href="/" class="nav-link">Projects</a>
+				<a href="/services" class="nav-link">Services</a>
+				<a href="/process" class="nav-link">Process</a>
 				<a href="/about" class="nav-link">About</a>
+				<a href="/faq" class="nav-link">FAQ</a>
 				<a href="/contact" class="nav-link">Contact</a>
 			</nav>
 		</div>
@@ -145,8 +148,9 @@
 
 	.site-nav {
 		display: flex;
-		gap: clamp(1rem, 3vw, 2.25rem);
-		flex-shrink: 0;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		gap: clamp(0.75rem, 3vw, 2.25rem);
 	}
 
 	.nav-link {

@@ -20,6 +20,7 @@ SvelteKit rebuild.
 | 10 | First Light Studio | https://firstlightstudio.co.nz/ | Wellington + Nelson, nationwide | Sustainable residential, NZIA award-winning | Projects, Interiors, Process (Approach + Renos), News, Studio, BUILD, Contact |
 | 11 | Carolin Friese Architecture | https://www.cf-architecture.co.nz/ | Queenstown, nationwide | Passive House / sustainable residential | Home, About, Services, Projects, Passive House, Recognition, News, Contact |
 | 12 | Sills van Bohemen | https://svb.co.nz/ | (search) Wellington/NZ | Residential | Has dedicated "The Architectural Process" page |
+| 13 | Waller Projects | https://www.wallerprojects.co.nz/ | Whenuapai, Auckland (neighbour to Hobsonville) | Design-build bespoke residential; 20+ yrs | Home, Projects, 3D Designs, About, Contact, Help (Support, FAQs) |
 
 (Also surfaced and worth quick visit: Daniel Marshall Architects on Hobsonville Rd —
 direct geographic neighbour; LTD Architectural ltdarch.co.nz; Nala Studio nala.co.nz;
@@ -84,6 +85,12 @@ turnerroad.co.nz; Holmes Architecture holmesarchitecture.co.nz.)
   Prof, NZDipArchTech) — humanises the studio.
 - **First Light's "Interiors" as its own nav item** — signals service
   breadth without burying it under Services.
+- **Waller Projects' "3D Designs" nav item** — pre-build virtual
+  walkthroughs surfaced as a headline service, not buried under Services.
+  Their "Help → Support / FAQs" section is a clean way to host an FAQ.
+  As a Whenuapai design-build studio it's the nearest geographic neighbour
+  to Hobsonville sampled here; credentials shown: 20+ yrs, Master Builders
+  awards, LBP.
 
 ## Section 4 — NZ-specific credentials commonly displayed
 
@@ -150,4 +157,5 @@ Homes blurb, and a named team page if/when staff grow.
 - https://firstlightstudio.co.nz/
 - https://www.cf-architecture.co.nz/
 - https://svb.co.nz/the-architectural-process/
+- https://www.wallerprojects.co.nz/
 - https://adnz.org.nz/find-a-designer

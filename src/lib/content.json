@@ -5,5 +5,84 @@
   "about": "The Drawing Office is an architecture practice designing new homes across New Zealand. Based in Browns Bay on Auckland's North Shore, we work with clients from first conversations through concept, consent, and construction.\n\nWe start every project by listening — to your site, to your brief, and to the way you actually want to live. Good architecture is specific: to its setting, its climate, the people who'll live in it, and the way it will be built. The drawings we produce are our way of working all of that out with you before the first piece of timber is cut.\n\nWe stay closely involved from early sketches through detailed drawings and site visits, so the house you end up with is the house you wanted — refined along the way by what you learn together.\n\nIf you're thinking about building, we'd love to hear from you.",
   "contact": {
     "intro": "Planning a new home? Tell us a little about your site and what you have in mind — we'll be in touch to talk it through."
+  },
+  "services": {
+    "intro": "The Drawing Office is a residential architectural design studio. We work with homeowners across Auckland and New Zealand, from a first feasibility chat through to the drawings your builder works from. Whatever the project, the approach is the same: design that's specific to your site, your brief, and the way you want to live.",
+    "items": [
+      {
+        "title": "New Homes",
+        "body": "Custom homes designed from the ground up around your site and the way you live. We shape the brief with you, test what the site and budget allow, and develop a design through to the detailed drawings needed for consent and construction."
+      },
+      {
+        "title": "Renovations & Alterations",
+        "body": "Additions, reworked layouts, and whole-home renovations that make an existing house work harder. We're careful about how new work meets the old, and about getting the most out of what's already there."
+      },
+      {
+        "title": "Subdivisions & Multi-unit",
+        "body": "Feasibility and design for adding a dwelling, splitting a site, or developing multiple units. We help you understand what the zoning and the site allow before you commit, then design homes that make the most of it. [TBC: Matt to confirm scope offered]"
+      },
+      {
+        "title": "Resource & Building Consents",
+        "body": "We prepare and document the drawings your project needs for resource and building consent, and work with the council and your wider team through the process. [TBC: Matt to confirm consent services and any LBP-Design scope]"
+      }
+    ]
+  },
+  "process": {
+    "intro": "Every project is different, but the path from first conversation to finished home follows the same clear stages. Here's how a typical project runs.",
+    "stages": [
+      {
+        "name": "Brief & Feasibility",
+        "body": "We start by understanding your site, your brief, and your budget — and test what's realistically possible before you commit to a full design."
+      },
+      {
+        "name": "Concept Design",
+        "body": "We explore the big moves: how the home sits on the site, how it's organised, and how it feels to move through. You'll see the design take shape and help steer it."
+      },
+      {
+        "name": "Developed Design",
+        "body": "We refine the agreed concept — resolving layout, materials, and the look and feel — so the design is settled before the detailed drawings begin."
+      },
+      {
+        "name": "Detailed Design & Consent",
+        "body": "We produce the detailed drawings needed for building consent and coordinate with engineers and other consultants, then lodge with the council. [TBC: confirm consent handling]"
+      },
+      {
+        "name": "Tender & Builder Selection",
+        "body": "We help you get the project priced and choose a builder, so you go into construction with a clear scope and a team you trust."
+      },
+      {
+        "name": "Construction Observation",
+        "body": "We stay involved during the build, answering the questions that come up on site so the finished home matches the design. [TBC: Matt to confirm level of site involvement]"
+      }
+    ]
+  },
+  "faq": {
+    "intro": "A few of the questions homeowners ask most often before getting started. If yours isn't here, get in touch — we're happy to talk it through.",
+    "items": [
+      {
+        "q": "Do I need an architectural designer or an architect?",
+        "a": "Both can design your home. \"Architect\" is a title protected by law in New Zealand for people registered with the NZRAB; an architectural designer offers design and documentation services without that registration, often at a lower fee. For most new homes and renovations, an architectural designer covers everything you need. [TBC: Matt to confirm preferred wording]"
+      },
+      {
+        "q": "What does a project cost?",
+        "a": "Design fees depend on the size and complexity of the project and how far you take it. We'll give you a clear idea of fees up front once we understand your brief. [TBC: Matt to confirm fee approach — fixed fee, percentage, or hourly]"
+      },
+      {
+        "q": "How long does it take?",
+        "a": "From first conversation to consent typically takes several months, depending on the project and council timeframes; construction is additional. We'll set out an expected timeline for your project early on. [TBC: Matt to confirm typical durations]"
+      },
+      {
+        "q": "Do I need a resource consent?",
+        "a": "It depends on your site, the zoning, and what you're proposing. Some projects need only a building consent; others also need a resource consent. We help you work out which applies before you get too far down the track."
+      },
+      {
+        "q": "Can you work with my builder?",
+        "a": "Yes. We're happy to work with a builder you already have, or to help you find and choose one through the tender stage."
+      },
+      {
+        "q": "Where do you work?",
+        "a": "We're based in Browns Bay on Auckland's North Shore and work with clients across Auckland and around New Zealand. [TBC: reconcile with regions served]"
+      }
+    ]
   }
 }

@@ -26,6 +26,9 @@ type LegacyContent = {
 	home?: { intro?: string };
 	about?: string;
 	contact?: { intro?: string };
+	services?: { intro?: string; items?: Array<{ title?: string; body?: string }> };
+	process?: { intro?: string; stages?: Array<{ name?: string; body?: string }> };
+	faq?: { intro?: string; items?: Array<{ q?: string; a?: string }> };
 };
 
 const ROOT = path.resolve(new URL('..', import.meta.url).pathname);
@@ -114,16 +117,48 @@ for (let i = 0; i < projects.length; i++) {
 	console.log(`  [${i + 1}/${projects.length}] ${p.slug} — published with ${gallery.length} images`);
 }
 
-console.log('Seeding siteContent singleton...');
-const siteDraftId = 'drafts.siteContent';
-await client.createOrReplace({
-	_id: siteDraftId,
-	_type: 'siteContent',
+const siteFields = {
 	homeIntro: content.home?.intro ?? '',
 	about: content.about ?? '',
-	contactIntro: content.contact?.intro ?? ''
-});
-await publishDoc('siteContent', siteDraftId);
+	contactIntro: content.contact?.intro ?? '',
+	servicesIntro: content.services?.intro ?? '',
+	services: (content.services?.items ?? []).map((item) => ({
+		_key: cryptoKey(),
+		title: item.title ?? '',
+		body: item.body ?? ''
+	})),
+	processIntro: content.process?.intro ?? '',
+	process: (content.process?.stages ?? []).map((stage) => ({
+		_key: cryptoKey(),
+		name: stage.name ?? '',
+		body: stage.body ?? ''
+	})),
+	faqIntro: content.faq?.intro ?? '',
+	faq: (content.faq?.items ?? []).map((item) => ({
+		_key: cryptoKey(),
+		q: item.q ?? '',
+		a: item.a ?? ''
+	}))
+};
+
+const siteDraftId = 'drafts.siteContent';
+
+if (reset) {
+	console.log('Seeding siteContent singleton (reset: overwriting)...');
+	await client.createOrReplace({ _id: siteDraftId, _type: 'siteContent', ...siteFields });
+	await publishDoc('siteContent', siteDraftId);
+} else {
+	// Patch-only: never clobber copy already edited in Studio. setIfMissing adds
+	// the new Services/Process/FAQ sections (and any base field that doesn't exist
+	// yet) without touching existing values.
+	console.log('Seeding siteContent singleton (patch: only filling missing fields)...');
+	await client.createIfNotExists({ _id: 'siteContent', _type: 'siteContent' });
+	await client.patch('siteContent').setIfMissing(siteFields).commit();
+	const existingDraft = await client.getDocument(siteDraftId).catch(() => null);
+	if (existingDraft) {
+		await client.patch(siteDraftId).setIfMissing(siteFields).commit();
+	}
+}
 
 console.log('Done.');
 

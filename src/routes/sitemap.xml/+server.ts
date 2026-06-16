@@ -25,7 +25,10 @@ export const GET: RequestHandler = async () => {
 
 	const rootEntries: SitemapEntry[] = [
 		{ path: '/', images: [{ loc: '/og-default.jpg', title: SITE_NAME }] },
+		{ path: '/services', images: [] },
+		{ path: '/process', images: [] },
 		{ path: '/about', images: [] },
+		{ path: '/faq', images: [] },
 		{ path: '/contact', images: [] }
 	];
 
