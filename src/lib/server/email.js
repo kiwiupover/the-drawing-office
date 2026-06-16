@@ -2,7 +2,7 @@ import { Resend } from 'resend';
 import { env } from '$env/dynamic/private';
 
 const TO = 'info@thedrawingoffice.com';
-const DEFAULT_FROM = 'The Drawing Office <contact@thedrawingoffice.com>';
+const DEFAULT_FROM = 'The Drawing Office <info@thedrawingoffice.com>';
 
 /** @type {Resend | null} */
 let resend = null;
