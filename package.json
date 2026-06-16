@@ -4,17 +4,24 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "concurrently -n web,studio -c blue,magenta \"vite dev\" \"sanity dev --port 3333\"",
+		"dev:web": "vite dev",
+		"dev:studio": "sanity dev --port 3333",
 		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"sanity": "sanity",
+		"sanity:deploy": "sanity deploy",
+		"sanity:seed": "bun scripts/seed-sanity.ts",
+		"sanity:seed:reset": "bun scripts/seed-sanity.ts --reset"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-vercel": "^6.3.3",
 		"@sveltejs/kit": "^2.65.0",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"concurrently": "^10.0.3",
 		"node-html-parser": "^7.1.0",
 		"svelte": "^5.56.3",
 		"svelte-check": "^4.6.0",
@@ -22,7 +29,15 @@
 		"vite": "^8.0.16"
 	},
 	"dependencies": {
-		"resend": "^6.12.4"
+		"@sanity/client": "^7.22.1",
+		"@sanity/image-url": "^2.1.1",
+		"@sanity/orderable-document-list": "^2.0.3",
+		"@sanity/vision": "^6.1.0",
+		"react": "^19.2.7",
+		"react-dom": "^19.2.7",
+		"resend": "^6.12.4",
+		"sanity": "^6.1.0",
+		"styled-components": "^6.4.2"
 	},
 	"overrides": {
 		"brace-expansion": "^5.0.6"

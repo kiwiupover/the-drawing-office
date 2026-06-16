@@ -9,23 +9,20 @@
 	let prev = $derived(data.prev);
 	let next = $derived(data.next);
 
-	let seoTitle = $derived(`${project.title} — The Drawing Office`);
+	let seoTitle = $derived(project.seoTitle ?? `${project.title} — The Drawing Office`);
 	let seoDescription = $derived(
-		project.description ?? `Architectural project by The Drawing Office — ${project.title}.`
+		project.seoDescription ??
+			project.description ??
+			`A residential architecture project by The Drawing Office — ${project.title}, designed for its site, brief, and the way the owners wanted to live.`
 	);
-	let seoImage = $derived(`/og/${project.slug}.jpg`);
+	let seoImage = $derived(project.ogImage ?? '/og-default.jpg');
 	let canonicalPath = $derived(`/${project.slug}`);
 
 	let breadcrumbLd = $derived({
 		'@context': 'https://schema.org',
 		'@type': 'BreadcrumbList',
 		itemListElement: [
-			{
-				'@type': 'ListItem',
-				position: 1,
-				name: 'Home',
-				item: absUrl('/')
-			},
+			{ '@type': 'ListItem', position: 1, name: 'Projects', item: absUrl('/') },
 			{
 				'@type': 'ListItem',
 				position: 2,
@@ -33,6 +30,21 @@
 				item: absUrl(`/${project.slug}`)
 			}
 		]
+	});
+
+	let creativeWorkLd = $derived({
+		'@context': 'https://schema.org',
+		'@type': 'CreativeWork',
+		'@id': `${absUrl(`/${project.slug}`)}#project`,
+		name: project.title,
+		headline: project.title,
+		description: seoDescription,
+		url: absUrl(`/${project.slug}`),
+		image: project.ogImage ? absUrl(project.ogImage) : undefined,
+		genre: 'Residential architecture',
+		inLanguage: 'en-NZ',
+		creator: { '@id': `${absUrl('/')}#business` },
+		isPartOf: { '@id': `${absUrl('/')}#website` }
 	});
 </script>
 
@@ -45,7 +57,7 @@
 />
 
 <svelte:head>
-	{@html `<script type="application/ld+json">${JSON.stringify(breadcrumbLd)}<\/script>`}
+	{@html `<script type="application/ld+json">${JSON.stringify([breadcrumbLd, creativeWorkLd])}<\/script>`}
 </svelte:head>
 
 <article class="project">

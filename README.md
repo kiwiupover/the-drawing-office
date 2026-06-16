@@ -1,49 +1,54 @@
-# sv
+# The Drawing Office
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```sh
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
+SvelteKit + Vercel rebuild of [thedrawingoffice.com](https://thedrawingoffice.com). Content is served by Sanity; the embedded Sanity Studio lives at `/studio`.
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
 ```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+bun install
+bun run dev          # SvelteKit dev server
 ```
 
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+`/studio` mounts Sanity Studio in the same app. Once you've set the env vars below, visit `http://localhost:5173/studio`.
 
 ## Environment variables
 
-The private `/studio` content editor reads the following variables. A template is in `.env.example`.
+A template is in `.env.example`. Copy it to `.env.local` and fill in:
 
-- `ADMIN_PASSWORD` — shared password for the `/studio` login form.
-- `ADMIN_SESSION_SECRET` — long random string used to sign the admin session cookie (HMAC-SHA-256).
-- `GITHUB_TOKEN` — fine-grained PAT with contents read/write on this repo only.
-- `GITHUB_OWNER` — GitHub account or org that owns the repo.
-- `GITHUB_REPO` — repo name.
-- `GITHUB_BRANCH` — deploy branch the editor commits to (usually `main`).
+- `PUBLIC_SANITY_PROJECT_ID` — Sanity project ID (from https://www.sanity.io/manage).
+- `PUBLIC_SANITY_DATASET` — usually `production`.
+- `SANITY_WRITE_TOKEN` — only required locally for seeding. Create an Editor token on the Sanity project's API page.
+- `PUBLIC_GA_ID` — GA4 measurement ID (optional).
+- `RESEND_API_KEY` — Resend API key for the contact form.
+- `RESEND_FROM` — optional From override.
+
+## Seeding Sanity from the legacy JSON
+
+The first time you set up a Sanity dataset, seed it from the JSON snapshots checked into the repo:
+
+```sh
+bun run sanity:seed          # idempotent — skips projects that already exist
+bun run sanity:seed:reset    # wipes existing project + siteContent docs first
+```
+
+The script uploads every image under `static/images/<slug>/` as a Sanity asset and creates one `project` document per slug, plus the `siteContent` singleton.
+
+## Sanity CLI + hosted Studio
+
+The Studio is also deployed to https://the-drawing-office.sanity.studio/ — that's the canonical URL Matt uses to edit content.
+
+```sh
+bun run sanity login         # one-time
+bun run sanity:deploy        # rebuild + redeploy the hosted Studio after schema changes
+```
+
+Locally, `bun run dev` starts both the SvelteKit site (http://localhost:5173, embedded Studio at /studio) and the standalone Sanity Studio (http://localhost:3333).
+
+## Building
+
+```sh
+bun run build
+bun run preview
+```
+
+The Vercel adapter (`@sveltejs/adapter-vercel`) is used by default.

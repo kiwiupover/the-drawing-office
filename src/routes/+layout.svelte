@@ -21,6 +21,8 @@
 		'@id': `${SITE_URL}/#business`,
 		name: BUSINESS.name,
 		alternateName: 'The Drawing Office',
+		description:
+			'Residential architecture practice in Browns Bay, Auckland, designing new homes across New Zealand from first conversations through concept, consent, and construction.',
 		url: SITE_URL,
 		logo: absUrl('/favicon.svg'),
 		image: {
@@ -29,6 +31,7 @@
 			width: 1200,
 			height: 630
 		},
+		priceRange: '$$$',
 		telephone: BUSINESS.telephone,
 		email: BUSINESS.email,
 		address: {
@@ -56,6 +59,8 @@
 		'@id': `${SITE_URL}/#website`,
 		url: SITE_URL,
 		name: 'The Drawing Office',
+		description:
+			'Residential architecture by The Drawing Office, Auckland — a portfolio of new homes shaped by site, brief, and craft.',
 		publisher: { '@id': `${SITE_URL}/#business` },
 		inLanguage: 'en-NZ'
 	};
@@ -64,9 +69,13 @@
 </script>
 
 <svelte:head>
+	<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+	<meta name="format-detection" content="telephone=no" />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+	<link rel="preconnect" href="https://cdn.sanity.io" crossorigin="anonymous" />
+	<link rel="dns-prefetch" href="https://cdn.sanity.io" />
 	<link
 		rel="stylesheet"
 		href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap"
