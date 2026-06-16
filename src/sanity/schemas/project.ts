@@ -1,5 +1,6 @@
 import { defineField, defineType } from 'sanity';
 import { orderRankField, orderRankOrdering } from '@sanity/orderable-document-list';
+import { ARCHITECT_HINT, avoidArchitectMention } from './lib/terminology';
 
 export default defineType({
 	name: 'project',
@@ -30,7 +31,9 @@ export default defineType({
 			title: 'Description',
 			type: 'text',
 			rows: 3,
-			group: 'content'
+			group: 'content',
+			description: ARCHITECT_HINT,
+			validation: (Rule) => Rule.custom(avoidArchitectMention).warning()
 		}),
 		defineField({
 			name: 'gallery',

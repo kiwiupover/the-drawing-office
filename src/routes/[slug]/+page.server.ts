@@ -1,7 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { sanity, urlFor } from '$lib/sanity';
 import { projectListFullQuery } from '$lib/queries';
-import { safeTerminology } from '$lib/safe-terms.js';
 import type { EntryGenerator, PageServerLoad } from './$types';
 
 export const prerender = true;
@@ -76,11 +75,11 @@ export const load: PageServerLoad = async ({ params }) => {
 		project: {
 			slug: raw.slug,
 			title: raw.title,
-			description: safeTerminology(raw.description) ?? null,
+			description: raw.description ?? null,
 			images: expandImages(raw.images ?? []),
-			ogImage: seoOg ?? `/og/${raw.slug}.png`,
-			seoTitle: safeTerminology(raw.seo?.title) ?? null,
-			seoDescription: safeTerminology(raw.seo?.description) ?? null
+			ogImage: seoOg ?? `/og/${raw.slug}.jpg`,
+			seoTitle: raw.seo?.title ?? null,
+			seoDescription: raw.seo?.description ?? null
 		},
 		prev: { slug: prevRaw.slug, title: prevRaw.title },
 		next: { slug: nextRaw.slug, title: nextRaw.title }

@@ -2,6 +2,7 @@ import { error } from '@sveltejs/kit';
 import { read } from '$app/server';
 import satori from 'satori';
 import { Resvg } from '@resvg/resvg-js';
+import sharp from 'sharp';
 import { sanity, urlFor } from '$lib/sanity';
 import jostBoldFile from '$lib/og/Jost-Bold.ttf';
 import jostMediumFile from '$lib/og/Jost-Medium.ttf';
@@ -17,6 +18,10 @@ type ProjectRow = {
 	title: string;
 	images?: Array<{ asset?: { _id?: string; _ref?: string } }>;
 };
+
+const PHOTO_W = 1200;
+const PHOTO_H = 430;
+const PANEL_H = 200;
 
 export const entries: EntryGenerator = async () => {
 	const projects = await sanity.fetch<Array<{ slug: string }>>(
@@ -38,7 +43,7 @@ export const GET: RequestHandler = async ({ params, setHeaders }) => {
 
 	const firstImage = (project.images ?? []).find((img) => img?.asset);
 	const bgUrl = firstImage
-		? urlFor(firstImage as never).width(1200).height(630).fit('crop').url()
+		? urlFor(firstImage as never).width(PHOTO_W).height(PHOTO_H).fit('crop').url()
 		: null;
 
 	const bgDataUrl = bgUrl ? await fetchAsDataUrl(bgUrl) : null;
@@ -53,12 +58,13 @@ export const GET: RequestHandler = async ({ params, setHeaders }) => {
 	});
 
 	const png = new Resvg(svg).render().asPng();
+	const jpeg = await sharp(png).jpeg({ quality: 82, mozjpeg: true }).toBuffer();
 
 	setHeaders({
-		'content-type': 'image/png',
+		'content-type': 'image/jpeg',
 		'cache-control': 'public, max-age=300, s-maxage=31536000, immutable'
 	});
-	return new Response(new Uint8Array(png));
+	return new Response(new Uint8Array(jpeg));
 };
 
 async function fetchAsDataUrl(url: string): Promise<string | null> {
@@ -80,27 +86,23 @@ function template({ title, bg }: { title: string; bg: string | null }) {
 			style: {
 				display: 'flex',
 				flexDirection: 'column',
-				justifyContent: 'flex-end',
 				width: '1200px',
 				height: '630px',
 				backgroundColor: '#111',
-				backgroundImage: bg ? `url(${bg})` : undefined,
-				backgroundSize: '1200px 630px',
-				backgroundPosition: 'center',
-				color: '#fff',
-				fontFamily: 'Jost',
-				position: 'relative'
+				fontFamily: 'Jost'
 			},
 			children: [
 				{
 					type: 'div',
 					props: {
 						style: {
-							position: 'absolute',
-							inset: '0',
 							display: 'flex',
-							background:
-								'linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,0.35) 65%, rgba(0,0,0,0.85) 100%)'
+							width: `${PHOTO_W}px`,
+							height: `${PHOTO_H}px`,
+							backgroundColor: '#222',
+							backgroundImage: bg ? `url(${bg})` : undefined,
+							backgroundSize: `${PHOTO_W}px ${PHOTO_H}px`,
+							backgroundPosition: 'center'
 						}
 					}
 				},
@@ -109,37 +111,48 @@ function template({ title, bg }: { title: string; bg: string | null }) {
 					props: {
 						style: {
 							display: 'flex',
-							flexDirection: 'column',
-							padding: '60px 72px',
-							zIndex: '1'
+							width: `${PHOTO_W}px`,
+							height: `${PANEL_H}px`,
+							padding: '34px 60px',
+							backgroundColor: '#111',
+							color: '#fff',
+							flexDirection: 'row',
+							alignItems: 'center',
+							justifyContent: 'space-between'
 						},
 						children: [
 							{
 								type: 'div',
 								props: {
-									style: {
-										fontSize: '22px',
-										fontWeight: 500,
-										letterSpacing: '0.18em',
-										textTransform: 'uppercase',
-										opacity: 0.8,
-										marginBottom: '18px'
-									},
-									children: 'The Drawing Office'
-								}
-							},
-							{
-								type: 'div',
-								props: {
-									style: {
-										fontSize: '92px',
-										fontWeight: 700,
-										letterSpacing: '-0.02em',
-										lineHeight: 1.02,
-										marginBottom: '28px',
-										textShadow: '0 2px 24px rgba(0,0,0,0.45)'
-									},
-									children: title
+									style: { display: 'flex', flexDirection: 'column' },
+									children: [
+										{
+											type: 'div',
+											props: {
+												style: {
+													fontSize: '20px',
+													fontWeight: 500,
+													letterSpacing: '0.18em',
+													textTransform: 'uppercase',
+													opacity: 0.7,
+													marginBottom: '14px'
+												},
+												children: 'The Drawing Office'
+											}
+										},
+										{
+											type: 'div',
+											props: {
+												style: {
+													fontSize: '68px',
+													fontWeight: 700,
+													letterSpacing: '-0.02em',
+													lineHeight: 1
+												},
+												children: title
+											}
+										}
+									]
 								}
 							},
 							{
@@ -147,10 +160,9 @@ function template({ title, bg }: { title: string; bg: string | null }) {
 								props: {
 									style: {
 										display: 'flex',
-										alignItems: 'center',
-										gap: '14px',
-										fontSize: '26px',
-										fontWeight: 500
+										flexDirection: 'column',
+										alignItems: 'flex-end',
+										gap: '10px'
 									},
 									children: [
 										{
@@ -158,10 +170,12 @@ function template({ title, bg }: { title: string; bg: string | null }) {
 											props: {
 												style: {
 													display: 'flex',
-													padding: '12px 22px',
+													padding: '14px 28px',
 													borderRadius: '999px',
 													backgroundColor: '#fff',
-													color: '#111'
+													color: '#111',
+													fontSize: '24px',
+													fontWeight: 500
 												},
 												children: 'View project'
 											}
@@ -169,7 +183,7 @@ function template({ title, bg }: { title: string; bg: string | null }) {
 										{
 											type: 'div',
 											props: {
-												style: { opacity: 0.85 },
+												style: { fontSize: '18px', opacity: 0.7 },
 												children: 'thedrawingoffice.com'
 											}
 										}

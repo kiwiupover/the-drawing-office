@@ -1,6 +1,5 @@
 import { sanity, urlFor } from '$lib/sanity';
 import { projectListQuery, siteContentQuery } from '$lib/queries';
-import { safeTerminology } from '$lib/safe-terms.js';
 import type { PageServerLoad } from './$types';
 
 export const prerender = true;
@@ -23,7 +22,7 @@ export const load: PageServerLoad = async () => {
 	const projects = (projectsRaw ?? []).map((p) => ({
 		slug: p.slug,
 		title: p.title,
-		description: safeTerminology(p.description) ?? null,
+		description: p.description ?? null,
 		cover: p.coverImage
 			? urlFor(p.coverImage as never).width(1200).height(800).fit('crop').url()
 			: null
@@ -32,7 +31,7 @@ export const load: PageServerLoad = async () => {
 	return {
 		projects,
 		content: {
-			homeIntro: safeTerminology(content?.homeIntro) ?? ''
+			homeIntro: content?.homeIntro ?? ''
 		}
 	};
 };

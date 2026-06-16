@@ -2,7 +2,6 @@
 	import Gallery from '$lib/components/Gallery.svelte';
 	import SEO from '$lib/components/SEO.svelte';
 	import { absUrl } from '$lib/site.js';
-	import { truncate } from '$lib/truncate.js';
 	import { reveal } from '$lib/actions/reveal.js';
 
 	let { data } = $props();
@@ -10,16 +9,11 @@
 	let prev = $derived(data.prev);
 	let next = $derived(data.next);
 
-	let seoTitle = $derived(
-		truncate(project.seoTitle ?? `${project.title} — The Drawing Office`, 60)
-	);
+	let seoTitle = $derived(project.seoTitle ?? `${project.title} — The Drawing Office`);
 	let seoDescription = $derived(
-		truncate(
-			project.seoDescription ??
-				project.description ??
-				`A residential architecture project by The Drawing Office — ${project.title}, designed for its site, brief, and the way the owners wanted to live.`,
-			155
-		)
+		project.seoDescription ??
+			project.description ??
+			`A residential architecture project by The Drawing Office — ${project.title}, designed for its site, brief, and the way the owners wanted to live.`
 	);
 	let seoImage = $derived(project.ogImage ?? '/og-default.jpg');
 	let canonicalPath = $derived(`/${project.slug}`);
