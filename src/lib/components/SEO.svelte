@@ -1,7 +1,6 @@
 <script>
 	import { page } from '$app/state';
 	import { SITE_NAME, SITE_DESCRIPTION, DEFAULT_OG_IMAGE, absUrl } from '$lib/site.js';
-	import { truncate } from '$lib/truncate.js';
 
 	/** @type {{ title: string, description?: string, canonicalPath?: string, ogImage?: string, ogImageAlt?: string, ogType?: string }} */
 	let {
@@ -20,17 +19,15 @@
 	let imageAlt = $derived(
 		ogImageAlt ?? (title.includes(SITE_NAME) ? title : `${title} — ${SITE_NAME}`)
 	);
-	let metaDescription = $derived(truncate(description, 155));
-	let socialDescription = $derived(truncate(description, 125));
 </script>
 
 <svelte:head>
 	<title>{title}</title>
-	<meta name="description" content={metaDescription} />
+	<meta name="description" content={description} />
 	<link rel="canonical" href={canonical} />
 
 	<meta property="og:title" content={title} />
-	<meta property="og:description" content={socialDescription} />
+	<meta property="og:description" content={description} />
 	<meta property="og:url" content={canonical} />
 	<meta property="og:type" content={ogType} />
 	<meta property="og:site_name" content={SITE_NAME} />
@@ -43,7 +40,7 @@
 
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={title} />
-	<meta name="twitter:description" content={socialDescription} />
+	<meta name="twitter:description" content={description} />
 	<meta name="twitter:image" content={image} />
 	<meta name="twitter:image:alt" content={imageAlt} />
 </svelte:head>
