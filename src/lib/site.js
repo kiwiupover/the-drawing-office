@@ -2,7 +2,7 @@ export const SITE_URL = 'https://www.thedrawingoffice.com';
 export const SITE_NAME = 'The Drawing Office';
 export const SITE_TAGLINE = 'Architectural Design Studio, Auckland NZ';
 export const SITE_DESCRIPTION =
-	'The Drawing Office designs new homes across New Zealand from a studio in Browns Bay, Auckland. A selected portfolio of residential architecture shaped by site, brief, and craft.';
+	'Residential architecture by The Drawing Office, Auckland. A portfolio of new homes across New Zealand shaped by site, brief, and craft.';
 
 export const BUSINESS = {
 	name: 'The Drawing Office Ltd',

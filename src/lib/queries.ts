@@ -10,7 +10,7 @@ export const projectListFullQuery = `*[_type == "project"] | order(orderRank asc
 	title,
 	description,
 	seo,
-	"images": gallery[]{ ..., asset-> }
+	"images": gallery[]{ ..., asset->{ ..., metadata { dimensions } } }
 }`;
 
 export const projectBySlugQuery = `*[_type == "project" && slug.current == $slug][0] {

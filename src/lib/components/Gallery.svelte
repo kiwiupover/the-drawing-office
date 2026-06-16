@@ -1,7 +1,7 @@
 <script>
 	import { reveal } from '$lib/actions/reveal.js';
 
-	/** @typedef {{ src: string, thumb?: string, alt?: string }} GalleryImage */
+	/** @typedef {{ src: string, thumb?: string, alt?: string, width?: number, height?: number }} GalleryImage */
 	/** @type {{ images: GalleryImage[], alt?: string }} */
 	let { images, alt = '' } = $props();
 
@@ -56,7 +56,10 @@
 					: alt
 						? `${alt} — The Drawing Office architectural project, photo ${i + 1} of ${images.length}`
 						: `The Drawing Office architectural project, photo ${i + 1} of ${images.length}`}
-				loading="lazy"
+				width={image.width || undefined}
+				height={image.height || undefined}
+				loading={i === 0 ? 'eager' : 'lazy'}
+				fetchpriority={i === 0 ? 'high' : undefined}
 				decoding="async"
 			/>
 		</button>

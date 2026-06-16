@@ -29,6 +29,7 @@
 		"vite": "^8.0.16"
 	},
 	"dependencies": {
+		"@resvg/resvg-js": "^2.6.2",
 		"@sanity/client": "^7.22.1",
 		"@sanity/image-url": "^2.1.1",
 		"@sanity/orderable-document-list": "^2.0.3",
@@ -37,6 +38,7 @@
 		"react-dom": "^19.2.7",
 		"resend": "^6.12.4",
 		"sanity": "^6.1.0",
+		"satori": "^0.26.0",
 		"styled-components": "^6.4.2"
 	},
 	"overrides": {
