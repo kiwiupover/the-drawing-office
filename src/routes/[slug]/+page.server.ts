@@ -6,7 +6,11 @@ import type { EntryGenerator, PageServerLoad } from './$types';
 export const prerender = true;
 
 type SanityImage = {
-	asset?: { _ref?: string; _id?: string };
+	asset?: {
+		_ref?: string;
+		_id?: string;
+		metadata?: { dimensions?: { width?: number; height?: number } };
+	};
 	alt?: string;
 };
 
@@ -22,16 +26,29 @@ type RawProject = {
 	} | null;
 };
 
+function dimsFromAsset(asset: NonNullable<SanityImage['asset']>) {
+	const meta = asset.metadata?.dimensions;
+	if (meta?.width && meta?.height) return { width: meta.width, height: meta.height };
+	const ref = asset._id ?? asset._ref ?? '';
+	const m = ref.match(/-(\d+)x(\d+)-/);
+	return m ? { width: Number(m[1]), height: Number(m[2]) } : { width: 0, height: 0 };
+}
+
 function expandImages(images: SanityImage[]) {
 	return images
 		.filter((img): img is SanityImage & { asset: NonNullable<SanityImage['asset']> } =>
 			Boolean(img?.asset)
 		)
-		.map((img) => ({
-			src: urlFor(img as never).width(2000).fit('max').url(),
-			thumb: urlFor(img as never).width(800).fit('max').url(),
-			alt: img.alt ?? ''
-		}));
+		.map((img) => {
+			const { width, height } = dimsFromAsset(img.asset);
+			return {
+				src: urlFor(img as never).width(2000).fit('max').url(),
+				thumb: urlFor(img as never).width(800).fit('max').url(),
+				alt: img.alt ?? '',
+				width,
+				height
+			};
+		});
 }
 
 export const entries: EntryGenerator = async () => {
