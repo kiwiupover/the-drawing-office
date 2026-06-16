@@ -78,7 +78,7 @@ export const load: PageServerLoad = async ({ params }) => {
 			title: raw.title,
 			description: safeTerminology(raw.description) ?? null,
 			images: expandImages(raw.images ?? []),
-			ogImage: seoOg ?? `/og/${raw.slug}.png`,
+			ogImage: seoOg ?? `/og/${raw.slug}.jpg`,
 			seoTitle: safeTerminology(raw.seo?.title) ?? null,
 			seoDescription: safeTerminology(raw.seo?.description) ?? null
 		},
