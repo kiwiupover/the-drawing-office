@@ -1,6 +1,5 @@
 import { sanity, urlFor } from '$lib/sanity';
 import { projectListQuery, siteContentQuery } from '$lib/queries';
-import { safeTerminology } from '$lib/safe-terms.js';
 import type { PageServerLoad } from './$types';
 
 export const prerender = true;
@@ -23,7 +22,7 @@ export const load: PageServerLoad = async () => {
 	}));
 
 	return {
-		about: safeTerminology(content?.about) ?? '',
+		about: content?.about ?? '',
 		featured
 	};
 };
