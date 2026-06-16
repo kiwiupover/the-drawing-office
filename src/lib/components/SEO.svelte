@@ -15,6 +15,7 @@
 	let path = $derived(canonicalPath ?? page.url.pathname);
 	let canonical = $derived(absUrl(path));
 	let image = $derived(absUrl(ogImage));
+	let imageType = $derived(image.toLowerCase().endsWith('.png') ? 'image/png' : 'image/jpeg');
 	let imageAlt = $derived(
 		ogImageAlt ?? (title.includes(SITE_NAME) ? title : `${title} — ${SITE_NAME}`)
 	);
@@ -31,7 +32,7 @@
 	<meta property="og:type" content={ogType} />
 	<meta property="og:site_name" content={SITE_NAME} />
 	<meta property="og:image" content={image} />
-	<meta property="og:image:type" content="image/jpeg" />
+	<meta property="og:image:type" content={imageType} />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
 	<meta property="og:image:alt" content={imageAlt} />

@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { sanity, urlFor } from '$lib/sanity';
 import { projectListFullQuery } from '$lib/queries';
+import { safeTerminology } from '$lib/safe-terms.js';
 import type { EntryGenerator, PageServerLoad } from './$types';
 
 export const prerender = true;
@@ -67,10 +68,6 @@ export const load: PageServerLoad = async ({ params }) => {
 	const prevRaw = projects[(idx - 1 + projects.length) % projects.length];
 	const nextRaw = projects[(idx + 1) % projects.length];
 
-	const firstImage = (raw.images ?? []).find((img) => img?.asset);
-	const galleryOg = firstImage
-		? urlFor(firstImage as never).width(1200).height(630).fit('crop').url()
-		: null;
 	const seoOg = raw.seo?.image?.asset
 		? urlFor(raw.seo.image as never).width(1200).height(630).fit('crop').url()
 		: null;
@@ -79,11 +76,11 @@ export const load: PageServerLoad = async ({ params }) => {
 		project: {
 			slug: raw.slug,
 			title: raw.title,
-			description: raw.description ?? null,
+			description: safeTerminology(raw.description) ?? null,
 			images: expandImages(raw.images ?? []),
-			ogImage: seoOg ?? galleryOg,
-			seoTitle: raw.seo?.title ?? null,
-			seoDescription: raw.seo?.description ?? null
+			ogImage: seoOg ?? `/og/${raw.slug}.png`,
+			seoTitle: safeTerminology(raw.seo?.title) ?? null,
+			seoDescription: safeTerminology(raw.seo?.description) ?? null
 		},
 		prev: { slug: prevRaw.slug, title: prevRaw.title },
 		next: { slug: nextRaw.slug, title: nextRaw.title }

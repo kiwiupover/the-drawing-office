@@ -8,8 +8,8 @@
 </script>
 
 <SEO
-	title="Contact — The Drawing Office"
-	description="Talk to The Drawing Office about a new home in Auckland or wider New Zealand. Phone 09 970 9515, email info@thedrawingoffice.com, or send a message via the form."
+	title="Contact — The Drawing Office, Architectural Designers"
+	description="Talk to The Drawing Office about a new home in Auckland or anywhere in New Zealand. Phone 09 970 9515 or email info@thedrawingoffice.com."
 	canonicalPath="/contact"
 	ogType="profile"
 />

@@ -14,8 +14,8 @@
 </script>
 
 <SEO
-	title="About — The Drawing Office"
-	description="The Drawing Office is a residential architecture practice in Browns Bay, Auckland. We work with clients from first conversations through concept, consent, and construction."
+	title="About — The Drawing Office, Architectural Designers"
+	description="Residential architecture practice in Browns Bay, Auckland. We work with clients from first conversations through concept, consent, and build."
 	canonicalPath="/about"
 />
 

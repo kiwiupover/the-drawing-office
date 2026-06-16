@@ -10,7 +10,7 @@
 
 <SEO
 	title="The Drawing Office — Residential Architecture, Auckland NZ"
-	description="The Drawing Office designs new homes across New Zealand from a studio in Browns Bay, Auckland. A selected portfolio of residential projects shaped by site, brief, and craft."
+	description="Residential architecture by The Drawing Office, Auckland. A portfolio of new homes across New Zealand shaped by site, brief, and craft."
 	canonicalPath="/"
 />
 
