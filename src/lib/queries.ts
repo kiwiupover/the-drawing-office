@@ -23,5 +23,13 @@ export const projectBySlugQuery = `*[_type == "project" && slug.current == $slug
 export const siteContentQuery = `*[_type == "siteContent"][0] {
 	homeIntro,
 	about,
-	contactIntro
+	contactIntro,
+	servicesIntro,
+	services[]{ title, body, image },
+	processIntro,
+	processHero,
+	process[]{ name, body },
+	faqIntro,
+	faqHero,
+	faq[]{ q, a }
 }`;
