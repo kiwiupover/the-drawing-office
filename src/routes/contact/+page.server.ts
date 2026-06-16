@@ -1,22 +1,30 @@
 import { fail } from '@sveltejs/kit';
 import { sendContactEmail } from '$lib/server/email';
 import { checkRateLimit } from '$lib/server/ratelimit';
+import { sanity } from '$lib/sanity';
+import { siteContentQuery } from '$lib/queries';
+import type { Actions, PageServerLoad } from './$types';
 
 export const prerender = false;
 
-/**
- * @param {{ name: string; email: string; message: string }} input
- */
-function validate({ name, email, message }) {
-	/** @type {Record<string, string>} */
-	const errors = {};
+type RawSiteContent = { contactIntro?: string } | null;
+
+export const load: PageServerLoad = async () => {
+	const content = await sanity.fetch<RawSiteContent>(siteContentQuery);
+	return {
+		contactIntro: content?.contactIntro ?? ''
+	};
+};
+
+function validate({ name, email, message }: { name: string; email: string; message: string }) {
+	const errors: Record<string, string> = {};
 	if (name.length < 1 || name.length > 100) errors.name = 'required';
 	if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = 'invalid';
 	if (message.length < 10 || message.length > 5000) errors.message = 'required';
 	return errors;
 }
 
-export const actions = {
+export const actions: Actions = {
 	send: async ({ request, getClientAddress }) => {
 		const ip = getClientAddress();
 		if (!checkRateLimit(ip)) return fail(429, { error: 'rate_limited' });

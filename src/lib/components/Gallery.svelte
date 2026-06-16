@@ -1,13 +1,15 @@
 <script>
 	import { reveal } from '$lib/actions/reveal.js';
 
-	/** @type {{ images: string[], alt?: string }} */
+	/** @typedef {{ src: string, thumb?: string, alt?: string }} GalleryImage */
+	/** @type {{ images: GalleryImage[], alt?: string }} */
 	let { images, alt = '' } = $props();
 
 	let activeIndex = $state(-1);
 	let isOpen = $derived(activeIndex >= 0);
-	let activeSrc = $derived(activeIndex >= 0 ? images[activeIndex] : '');
+	let activeSrc = $derived(activeIndex >= 0 ? images[activeIndex].src : '');
 
+	/** @param {number} i */
 	function open(i) {
 		activeIndex = i;
 	}
@@ -26,6 +28,7 @@
 		activeIndex = (activeIndex + 1) % images.length;
 	}
 
+	/** @param {KeyboardEvent} e */
 	function onKey(e) {
 		if (!isOpen) return;
 		if (e.key === 'Escape') close();
@@ -37,7 +40,7 @@
 <svelte:window onkeydown={onKey} />
 
 <div class="gallery">
-	{#each images as src, i (src + i)}
+	{#each images as image, i (image.src + i)}
 		<button
 			type="button"
 			class="tile reveal"
@@ -47,10 +50,12 @@
 			use:reveal
 		>
 			<img
-				{src}
-				alt={alt
-					? `${alt} — The Drawing Office architectural project, photo ${i + 1} of ${images.length}`
-					: `The Drawing Office architectural project, photo ${i + 1} of ${images.length}`}
+				src={image.thumb ?? image.src}
+				alt={image.alt
+					? image.alt
+					: alt
+						? `${alt} — The Drawing Office architectural project, photo ${i + 1} of ${images.length}`
+						: `The Drawing Office architectural project, photo ${i + 1} of ${images.length}`}
 				loading="lazy"
 				decoding="async"
 			/>

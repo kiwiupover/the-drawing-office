@@ -21,3 +21,8 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Sanity Studio runtime cache (created by `sanity dev`)
+.sanity
+# Sanity Studio build output (created by `sanity deploy`)
+/dist

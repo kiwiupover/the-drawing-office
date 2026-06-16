@@ -1,24 +1,23 @@
 <script>
 	import { enhance } from '$app/forms';
 	import SEO from '$lib/components/SEO.svelte';
-	import content from '$lib/content.json';
 	import { reveal } from '$lib/actions/reveal.js';
 
-	let { form } = $props();
+	let { form, data } = $props();
 	let submitting = $state(false);
 </script>
 
 <SEO
 	title="Contact — The Drawing Office"
-	description="Get in touch with The Drawing Office — architectural design studio in Browns Bay, Auckland. Phone 09 970 9515 or email info@thedrawingoffice.com."
+	description="Talk to The Drawing Office about a new home in Auckland or wider New Zealand. Phone 09 970 9515, email info@thedrawingoffice.com, or send a message via the form."
 	canonicalPath="/contact"
-	ogImage="/og/murray.jpg"
+	ogType="profile"
 />
 
 <section class="contact container">
 	<header class="intro reveal" use:reveal>
 		<h1>Contact</h1>
-		<p class="lede">{content.contact.intro}</p>
+		<p class="lede">{data.contactIntro}</p>
 	</header>
 
 	<div class="grid">

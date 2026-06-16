@@ -1,14 +1,16 @@
 <script>
 	import ProjectCard from '$lib/components/ProjectCard.svelte';
 	import SEO from '$lib/components/SEO.svelte';
-	import projects from '$lib/projects.json';
-	import content from '$lib/content.json';
 	import { reveal } from '$lib/actions/reveal.js';
+
+	let { data } = $props();
+	let projects = $derived(data.projects);
+	let content = $derived(data.content);
 </script>
 
 <SEO
-	title="The Drawing Office — Architectural Design Studio, Auckland NZ"
-	description="Architectural design studio in Browns Bay, Auckland. A selected portfolio of residential and commercial projects by The Drawing Office."
+	title="The Drawing Office — Residential Architecture, Auckland NZ"
+	description="The Drawing Office designs new homes across New Zealand from a studio in Browns Bay, Auckland. A selected portfolio of residential projects shaped by site, brief, and craft."
 	canonicalPath="/"
 />
 
@@ -21,8 +23,8 @@
 				&ldquo;Design is not just what it looks like and feels like. Design is how it works.&rdquo;<span class="attribution">&mdash; Steve Jobs</span>
 			</p>
 		</blockquote>
-		{#if content.home.intro}
-			<p class="studio-intro reveal" use:reveal={{ delay: 140 }}>{content.home.intro}</p>
+		{#if content.homeIntro}
+			<p class="studio-intro reveal" use:reveal={{ delay: 140 }}>{content.homeIntro}</p>
 		{/if}
 	</div>
 </section>

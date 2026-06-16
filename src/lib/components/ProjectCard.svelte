@@ -1,10 +1,10 @@
 <script>
-	/** @typedef {{ slug: string, title: string, description: string | null, images: string[] }} Project */
+	/** @typedef {{ slug: string, title: string, description: string | null, cover: string | null }} Project */
 
 	/** @type {{ project: Project }} */
 	let { project } = $props();
 
-	let cover = $derived(project.images?.[0] ?? '/images/placeholder.jpg');
+	let cover = $derived(project.cover ?? '/images/placeholder.jpg');
 </script>
 
 <a class="card" href="/{project.slug}">

@@ -1,24 +1,22 @@
 <script>
 	import SEO from '$lib/components/SEO.svelte';
-	import content from '$lib/content.json';
-	import projects from '$lib/projects.json';
 	import { reveal } from '$lib/actions/reveal.js';
 
+	let { data } = $props();
+	let featured = $derived(data.featured);
+
 	let paragraphs = $derived(
-		content.about
+		(data.about ?? '')
 			.split('\n\n')
-			.map((chunk) => chunk.trim())
+			.map((/** @type {string} */ chunk) => chunk.trim())
 			.filter(Boolean)
 	);
-
-	const featured = projects.slice(0, 6);
 </script>
 
 <SEO
 	title="About — The Drawing Office"
-	description="About The Drawing Office — architectural design studio in Browns Bay, Auckland."
+	description="The Drawing Office is a residential architecture practice in Browns Bay, Auckland. We work with clients from first conversations through concept, consent, and construction."
 	canonicalPath="/about"
-	ogImage="/og/williams.jpg"
 />
 
 <section class="about container">
@@ -45,12 +43,14 @@
 					href="/{project.slug}"
 					use:reveal={{ delay: 80 + i * 110 }}
 				>
-					<img
-						src="/og/{project.slug}.jpg"
-						alt="{project.title} — a home by The Drawing Office"
-						loading="lazy"
-						decoding="async"
-					/>
+					{#if project.cover}
+						<img
+							src={project.cover}
+							alt="{project.title} — a home by The Drawing Office"
+							loading="lazy"
+							decoding="async"
+						/>
+					{/if}
 					<span class="tile-title">{project.title}</span>
 				</a>
 			{/each}
